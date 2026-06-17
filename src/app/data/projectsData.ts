@@ -18,7 +18,7 @@ export const projectsData: Project[] = [
     description: "A beautifully crafted traditional recipe digital library.",
     category: "UI/UX Design",
     tools: ["Figma"],
-    prototypeLink: "https://www.figma.com/proto/tsDL4qx1sMHKzXpL9ZX0oM/msagy?node-id=0-1&t=jGM3UXtncCWrc3ft-1",
+    prototypeLink: "https://www.figma.com/proto/tsDL4qx1sMHKzXpL9ZX0oM/msagy?node-id=1-1531&t=dfpjWvrMF0Bz6BPP-1",
     designFileLink: "https://www.figma.com/design/tsDL4qx1sMHKzXpL9ZX0oM/msagy?node-id=0-1&t=jGM3UXtncCWrc3ft-1",
     gradient: "from-purple-400 to-pink-400"
   },
@@ -28,7 +28,7 @@ export const projectsData: Project[] = [
     description: "A sleek and modern financial/crypto wallet interface.",
     category: "UI/UX Design",
     tools: ["Figma"],
-    prototypeLink: "https://www.figma.com/proto/0eoeGyge1eSqp7nxq598cM/neo-wallet?node-id=115-3&t=IL32i1KSR6b2INFL-1ple.com/neo-wallet-preview",
+    prototypeLink: "https://www.figma.com/proto/0eoeGyge1eSqp7nxq598cM/neo-wallet?node-id=115-3&t=jAtuUf15moMerlEd-1",
     designFileLink: "https://www.figma.com/design/0eoeGyge1eSqp7nxq598cM/neo-wallet?node-id=115-3&t=IL32i1KSR6b2INFL-1",
     gradient: "from-lavender-400 to-purple-500"
   },
@@ -38,7 +38,7 @@ export const projectsData: Project[] = [
     description: "An elegant UI/UX design case study.",
     category: "UI/UX Design",
     tools: ["Figma"],
-    prototypeLink: "https://www.figma.com/proto/SnMw6CKtZ6NYpwCZrxou1b/Aura?node-id=167-2&t=Smqf0X9Vn1yeNJWY-1",
+    prototypeLink: "https://www.figma.com/proto/SnMw6CKtZ6NYpwCZrxou1b/Aura?node-id=0-1&t=1FejJllJKoeB2G2R-1",
     designFileLink: "https://www.figma.com/design/SnMw6CKtZ6NYpwCZrxou1b/Aura?node-id=167-2&t=Smqf0X9Vn1yeNJWY-1",
     gradient: "from-purple-500 to-indigo-500"
   },
