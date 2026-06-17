@@ -13,7 +13,7 @@ export function Hero() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[600px] bg-gradient-to-b from-purple-200/40 to-lavender-300/50 rounded-l-full backdrop-blur-md border border-white/30"
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-72 h-80 sm:w-80 sm:h-96 lg:w-[500px] lg:h-[600px] bg-gradient-to-b from-purple-200/40 to-lavender-300/50 rounded-l-full backdrop-blur-md border border-white/30"
       >
         {/* Botanical line art inside arch */}
         <svg className="absolute bottom-20 left-10 w-24 h-32 opacity-60" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
