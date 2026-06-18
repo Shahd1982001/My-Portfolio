@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Project } from "../data/projectsData";
-import { ImageModal } from "./ImageModal";
+import { ProjectDetailsModal } from "./ProjectDetailsModal";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,16 +10,14 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   return (
     <>
-      <ImageModal
-        isOpen={modalOpen}
-        imageSrc={project.imageSrc || ""}
-        imageAlt={project.imageAlt ?? project.title}
-        onClose={() => setModalOpen(false)}
+      <ProjectDetailsModal
+        isOpen={detailsOpen}
+        project={project}
+        onClose={() => setDetailsOpen(false)}
       />
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -27,9 +25,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ scale: 1.02, y: -8 }}
-      onMouseEnter={() => setMenuOpen(true)}
-      onMouseLeave={() => setMenuOpen(false)}
-      onClick={() => setMenuOpen((current) => !current)}
+      onClick={() => setDetailsOpen(true)}
       className="group relative p-8 bg-white/80 backdrop-blur-sm rounded-3xl border border-purple-100/50 shadow-lg shadow-purple-100/50 hover:shadow-2xl hover:shadow-purple-200/50 transition-all duration-300 cursor-pointer overflow-hidden"
     >
       {/* Gradient overlay */}
@@ -51,17 +47,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {project.imageSrc ? (
-          <button
-            type="button"
-            onClick={() => setModalOpen(true)}
-            className="mb-6 w-full overflow-hidden rounded-3xl border border-purple-100/50 bg-slate-100 shadow-sm transition hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
-          >
+          <div className="mb-6 w-full overflow-hidden rounded-3xl border border-purple-100/50 bg-slate-100 shadow-sm transition group-hover:shadow-lg">
             <img
               src={project.imageSrc}
               alt={project.imageAlt ?? project.title}
-              className="h-56 w-full object-cover transition duration-300 group-hover:scale-105 cursor-pointer"
+              className="h-56 w-full object-cover transition duration-300 group-hover:scale-105"
             />
-          </button>
+          </div>
         ) : null}
 
         <h3 className="text-2xl mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
@@ -85,38 +77,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
         <p className="text-gray-600 leading-relaxed">{project.description}</p>
 
-        {(project.prototypeLink || project.designFileLink) && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={menuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 0.25 }}
-            className={`mt-8 grid gap-3 ${menuOpen ? "" : "pointer-events-none"}`}
-            aria-hidden={!menuOpen}
-          >
-            <div className="rounded-3xl border border-purple-100/60 bg-purple-50/80 backdrop-blur-sm p-4 grid gap-3">
-              {project.prototypeLink ? (
-                <a
-                  href={project.prototypeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-purple-200/80 bg-white/90 px-4 py-2 text-sm font-medium text-purple-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-purple-50"
-                >
-                  Live Preview
-                </a>
-              ) : null}
-              {project.designFileLink ? (
-                <a
-                  href={project.designFileLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-purple-200/80 bg-white/90 px-4 py-2 text-sm font-medium text-purple-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-purple-50"
-                >
-                  View Design File
-                </a>
-              ) : null}
-            </div>
-          </motion.div>
-        )}
 
         {/* Decorative line */}
         <div className="mt-6 w-16 h-0.5 bg-gradient-to-r from-purple-400 to-transparent rounded-full group-hover:w-24 transition-all duration-300"></div>
