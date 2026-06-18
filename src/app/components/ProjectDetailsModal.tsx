@@ -40,9 +40,6 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
             className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
             onClick={onClose}
           >
-            <p className="pointer-events-none absolute bottom-6 left-1/2 z-40 -translate-x-1/2 rounded-full bg-white/80 px-4 py-2 text-xs text-slate-600 shadow-sm shadow-slate-200">
-              Click outside the window to close
-            </p>
             <motion.div
               onClick={(event) => event.stopPropagation()}
               className="relative w-full max-w-6xl overflow-hidden rounded-[2.5rem] border border-purple-100/70 bg-white/95 shadow-2xl shadow-purple-100/30"
@@ -107,29 +104,34 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                   </div>
 
                   {(project.prototypeLink || project.designFileLink) ? (
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      {project.prototypeLink ? (
-                        <a
-                          href={project.prototypeLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center rounded-full border border-purple-200/70 bg-white px-5 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:bg-purple-50"
-                        >
-                          Live Preview
-                        </a>
-                      ) : null}
+                    <>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        {project.prototypeLink ? (
+                          <a
+                            href={project.prototypeLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center rounded-full border border-purple-200/70 bg-white px-5 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:bg-purple-50"
+                          >
+                            Live Preview
+                          </a>
+                        ) : null}
 
-                      {project.designFileLink ? (
-                        <a
-                          href={project.designFileLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center rounded-full border border-purple-200/70 bg-white px-5 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:bg-purple-50"
-                        >
-                          View Design File
-                        </a>
-                      ) : null}
-                    </div>
+                        {project.designFileLink ? (
+                          <a
+                            href={project.designFileLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center rounded-full border border-purple-200/70 bg-white px-5 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:bg-purple-50"
+                          >
+                            View Design File
+                          </a>
+                        ) : null}
+                      </div>
+                      <p className="mt-3 text-center text-xs text-slate-500">
+                        اضغط خارج النافذة لإغلاقه, Click outside the window to close it.
+                      </p>
+                    </>
                   ) : null}
                 </div>
               </div>
