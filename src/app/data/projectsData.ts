@@ -9,6 +9,10 @@ export interface Project {
   designFileLink?: string;
   imageSrc?: string;
   imageAlt?: string;
+  // Optional links for website / app projects
+  websiteLink?: string; // use for live website URLs
+  // appLink?: string; // use for app store or direct app page URLs
+  // apkLink?: string; // use for APK download links
   details?: {
     en?: string;
     ar?: string;
@@ -16,6 +20,40 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
+  // Example placeholders for future website/app entries:
+  {
+    id: "lmapi-libya.netlify",
+    title: "LMAPI",
+    description: "A live website project built for showcase.",
+    category: "Website",
+    tools: ["Html", "Css", "JavaScript"],
+    websiteLink: "https://lmapi-libya.netlify.app/",
+    gradient: "from-sky-400 to-indigo-500",
+    details: {
+      en: "Discover the rich heritage of Libyan traditional medicine. Explore a comprehensive digital database of medicinal and aromatic plants found in Libya, their uses, properties, and cultural significance.",
+      ar: "اكتشف التراث الغني للطب التقليدي الليبي. استعرض قاعدة بيانات رقمية شاملة للنباتات الطبية والعطرية الموجودة في ليبيا، مع معلومات عن استخداماتها وخصائصها وأهميتها الثقافية.",
+    },
+  },
+
+
+  //*********************************************************************/
+  // {
+  //   id: "my-flutter-app",
+  //   title: "My Flutter App",
+  //   description: "A Flutter application demo with APK download.",
+  //   category: "Application",
+  //   tools: ["Flutter"],
+  //   appLink: "https://example.com/app-page",
+  //   apkLink: "https://example.com/my-app.apk",
+  //   gradient: "from-teal-400 to-cyan-500",
+  //   details: {
+  //     en: "A demo app listed as a project with a download link.",
+  //     ar: "تطبيق تجريبي مع رابط تنزيل APK.",
+  //   },
+  // },
+
+
+  //*********************************************************************/
   {
     id: "masgi-app",
     title: "Masgi App",
@@ -68,6 +106,9 @@ export const projectsData: Project[] = [
   //   designFileLink: "https://www.figma.com/file/roboleg-app",
   //   gradient: "from-pink-400 to-purple-400"
   // },
+
+
+   //*********************************************************************/
   {
     id: "brand-logo-set",
     title: "Lipstick Design",

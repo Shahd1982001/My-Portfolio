@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Project } from "../data/projectsData";
+import { ImageModal } from "./ImageModal";
 
 interface ProjectDetailsModalProps {
   isOpen: boolean;
@@ -9,14 +10,25 @@ interface ProjectDetailsModalProps {
 }
 
 export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetailsModalProps) {
+  const [imageOpen, setImageOpen] = useState(false);
+
   useEffect(() => {
     if (!isOpen) return;
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    const footer = document.querySelector("footer") as HTMLElement | null;
+    const originalFooterVisibility = footer?.style.visibility;
+    if (footer) {
+      footer.style.visibility = "hidden";
+    }
+
     return () => {
       document.body.style.overflow = originalOverflow || "";
+      if (footer) {
+        footer.style.visibility = originalFooterVisibility || "";
+      }
     };
   }, [isOpen]);
 
@@ -52,11 +64,18 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                 {project.imageSrc ? (
                   <div className="relative overflow-hidden rounded-[2rem] border border-purple-100/40 bg-purple-50/70 shadow-lg shadow-purple-100/20">
                     <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-r from-purple-200/70 via-transparent to-transparent" />
-                    <img
-                      src={project.imageSrc}
-                      alt={project.imageAlt ?? project.title}
-                      className="h-full w-full max-h-[560px] object-cover"
-                    />
+                    <button
+                      type="button"
+                      onClick={() => setImageOpen(true)}
+                      className="group block w-full cursor-pointer"
+                      aria-label="Open image fullscreen"
+                    >
+                      <img
+                        src={project.imageSrc}
+                        alt={project.imageAlt ?? project.title}
+                        className="h-full w-full max-h-[560px] object-cover transition duration-300 group-hover:scale-[1.02]"
+                      />
+                    </button>
                   </div>
                 ) : null}
 
@@ -103,9 +122,20 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                     ) : null}
                   </div>
 
-                  {(project.prototypeLink || project.designFileLink) ? (
+                  {(project.prototypeLink || project.designFileLink || project.websiteLink) ? (
                     <>
                       <div className="grid gap-3 sm:grid-cols-2">
+                        {project.websiteLink ? (
+                          <a
+                            href={project.websiteLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center rounded-full border border-purple-200/70 bg-purple-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-purple-800"
+                          >
+                            VIEW WEBSITE
+                          </a>
+                        ) : null}
+
                         {project.prototypeLink ? (
                           <a
                             href={project.prototypeLink}
@@ -137,6 +167,12 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
               </div>
             </motion.div>
           </motion.div>
+          <ImageModal
+            isOpen={imageOpen}
+            imageSrc={project.imageSrc ?? ""}
+            imageAlt={project.imageAlt ?? project.title}
+            onClose={() => setImageOpen(false)}
+          />
         </>
       )}
     </AnimatePresence>
