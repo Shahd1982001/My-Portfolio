@@ -11,6 +11,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const cardImageSrc = project.imageSrc ?? project.gallery?.[0];
 
   return (
     <>
@@ -46,10 +47,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </motion.div>
         </div>
 
-        {project.imageSrc ? (
+        {cardImageSrc ? (
           <div className="mb-6 w-full overflow-hidden rounded-3xl border border-purple-100/50 bg-slate-100 shadow-sm transition group-hover:shadow-lg">
             <img
-              src={project.imageSrc}
+              src={cardImageSrc}
               alt={project.imageAlt ?? project.title}
               className="h-56 w-full object-cover transition duration-300 group-hover:scale-105"
             />

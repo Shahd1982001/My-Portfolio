@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { Sparkles } from "lucide-react";
 
 export function Hero() {
   return (
@@ -23,23 +22,6 @@ export function Hero() {
           <ellipse cx="28" cy="75" rx="7" ry="14" fill="none" stroke="#a855f7" strokeWidth="1.5" opacity="0.4"/>
           <ellipse cx="35" cy="100" rx="8" ry="13" fill="none" stroke="#a855f7" strokeWidth="1.5" opacity="0.4"/>
         </svg>
-      </motion.div>
-
-      {/* Sparkle decorations */}
-      <motion.div
-        animate={{ rotate: [0, 180, 360] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        className="absolute top-32 right-1/3"
-      >
-        <Sparkles className="w-8 h-8 text-purple-400" />
-      </motion.div>
-
-      <motion.div
-        animate={{ rotate: [360, 180, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-40 right-1/4"
-      >
-        <Sparkles className="w-6 h-6 text-lavender-400" />
       </motion.div>
 
       {/* Main content */}

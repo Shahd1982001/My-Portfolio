@@ -8,6 +8,7 @@ import { Skills } from "./components/Skills";
 import { AllProjectsPage } from "./components/AllProjectsPage";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import { SiteSparkles } from "./components/SiteSparkles";
 
 export default function App() {
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -18,7 +19,8 @@ export default function App() {
   }, [showAllProjects]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="relative min-h-screen overflow-hidden bg-white">
+      <SiteSparkles />
       {!showAllProjects && <Navigation />}
       <AnimatePresence mode="wait">
         {showAllProjects ? (
