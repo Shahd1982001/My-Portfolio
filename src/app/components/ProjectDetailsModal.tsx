@@ -104,7 +104,7 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
               onClick={(event) => event.stopPropagation()}
               className={`relative w-full border border-purple-100/70 bg-white/95 shadow-2xl shadow-purple-100/30 ${
                 isMobile
-                  ? "max-w-[95%] rounded-[1.5rem] max-h-[90vh] overflow-y-auto mx-auto"
+                  ? "max-w-[95%] rounded-[1.5rem] max-h-[90vh] overflow-y-auto overflow-x-hidden mx-auto"
                   : "max-w-8xl rounded-[2.5rem] overflow-hidden"
               }`}
             >
@@ -128,9 +128,9 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                 <Sparkles className="h-6 w-6" />
               </motion.div>
 
-              {/* الشبكة الداخلية */}
+              {/* الشبكة الداخلية - منع السكرول الجانبي نهائياً */}
               <div
-                className={`relative grid ${
+                className={`relative grid overflow-x-hidden ${
                   isMobile
                     ? "grid-cols-1 gap-2 p-3"
                     : "grid gap-3 p-4 lg:grid-cols-[1.2fr_0.95fr]"
@@ -150,7 +150,7 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                       <img
                         src={mainPreviewImage}
                         alt={project.imageAlt ?? project.title}
-                        className={`h-full w-full object-cover transition duration-300 group-hover:scale-[1.02] ${
+                        className={`h-full w-full max-w-full object-cover transition duration-300 group-hover:scale-[1.02] ${
                           isMobile ? "max-h-[30vh]" : "max-h-[280px]"
                         }`}
                       />
@@ -169,7 +169,7 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                             <img
                               src={imageSrc}
                               alt={`${project.title} preview ${index + 1}`}
-                              className="h-16 w-full object-cover transition duration-300 group-hover:scale-105"
+                              className="h-16 w-full max-w-full object-cover transition duration-300 group-hover:scale-105"
                             />
                           </button>
                         ))}
@@ -177,7 +177,7 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                     ) : null}
 
                     {isUiUxProject ? (
-                      <div className="border-t border-purple-100/70 bg-white/75 p-2 text-xs leading-5 text-slate-600">
+                      <div className="border-t border-purple-100/70 bg-white/75 p-2 text-xs leading-5 text-slate-600 overflow-x-hidden break-words">
                         <p>
                           Quick preview: these images give a fast visual overview. Use Live Preview or View Design File to explore the complete screens and interaction flow.
                         </p>
@@ -190,7 +190,7 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                 ) : null}
 
                 {/* قسم النصوص والأزرار */}
-                <div className="space-y-2 text-slate-900">
+                <div className="space-y-2 text-slate-900 overflow-x-hidden break-words">
                   <div className="space-y-1">
                     <p className="inline-flex rounded-full border border-purple-200/70 bg-purple-100/80 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-purple-700">
                       {project.category}
@@ -214,19 +214,19 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                   ) : null}
 
                   <div className="space-y-2">
-                    <div className="rounded-[1.5rem] border border-purple-100/70 bg-white p-3 shadow-sm shadow-purple-100/20">
+                    <div className="rounded-[1.5rem] border border-purple-100/70 bg-white p-3 shadow-sm shadow-purple-100/20 overflow-x-hidden break-words">
                       <p className="text-xs leading-6 text-slate-700">{project.description}</p>
                     </div>
 
                     {project.details?.en ? (
-                      <div className="space-y-2 rounded-[1.5rem] border border-purple-100/70 bg-purple-50/80 p-3 shadow-sm shadow-purple-100/20">
+                      <div className="space-y-2 rounded-[1.5rem] border border-purple-100/70 bg-purple-50/80 p-3 shadow-sm shadow-purple-100/20 overflow-x-hidden break-words">
                         <h3 className="text-xs font-semibold text-slate-950">English Summary</h3>
                         <p className="text-xs leading-6 text-slate-700">{project.details.en}</p>
                       </div>
                     ) : null}
 
                     {project.details?.ar ? (
-                      <div className="space-y-2 rounded-[1.5rem] border border-purple-100/70 bg-purple-50/80 p-3 shadow-sm shadow-purple-100/20">
+                      <div className="space-y-2 rounded-[1.5rem] border border-purple-100/70 bg-purple-50/80 p-3 shadow-sm shadow-purple-100/20 overflow-x-hidden break-words">
                         <h3 className="text-xs font-semibold text-slate-950">الشرح بالعربية</h3>
                         <p dir="rtl" className="text-xs leading-6 text-slate-700">{project.details.ar}</p>
                       </div>
@@ -235,7 +235,7 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
 
                   {(project.prototypeLink || project.designFileLink || project.websiteLink) ? (
                     <>
-                      <div className="grid gap-1 sm:grid-cols-2">
+                      <div className="grid gap-1 sm:grid-cols-2 overflow-x-hidden">
                         {project.websiteLink ? (
                           <a
                             href={project.websiteLink}
@@ -271,7 +271,7 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
                       </div>
 
                       {isUiUxProject && !hasVisualPreview ? (
-                        <div className="rounded-[1.5rem] border border-purple-100/70 bg-purple-50/80 p-2 text-[10px] leading-5 text-slate-600">
+                        <div className="rounded-[1.5rem] border border-purple-100/70 bg-purple-50/80 p-2 text-[10px] leading-5 text-slate-600 overflow-x-hidden break-words">
                           <p>
                             Quick preview images will be added here for faster browsing. Use Live Preview or View Design File to explore the complete screens and interaction flow.
                           </p>
@@ -304,7 +304,6 @@ export function ProjectDetailsModal({ isOpen, project, onClose }: ProjectDetails
     </AnimatePresence>
   );
 }
-
 
 
 
