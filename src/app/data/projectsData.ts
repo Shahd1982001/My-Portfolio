@@ -64,7 +64,7 @@ export const projectsData: Project[] = [
   tools: ["Figma", "Google Stitch"],
   //prototypeLink: "YOUR_DAILY_SPARK_FIGMA_PROTOTYPE_LINK",
   designFileLink: "https://www.figma.com/design/higaPZ7cAvQk6YyJyByfGy/DailySpark?node-id=0-1&t=fwPELDNh8HbA4OYQ-1",
-  imageSrc: "public/images/section one.png",
+  imageSrc: "/images/section one.png",
   imageAlt: "Daily Spark habit tracking app interface preview",
   gradient: "from-orange-400 to-amber-400",
   details: {
@@ -72,8 +72,8 @@ export const projectsData: Project[] = [
     ar: "Daily Spark هو تطبيق محمول لتتبع العادات، صُمم لمساعدة المستخدمين على بناء روتين يومي مستمر بطريقة بسيطة ومحفزة دون تعقيد أو إغراقهم بإحصائيات وأنظمة إنتاجية معقدة. يركز التطبيق على العادات اليومية، ومتابعة التقدم، والسلاسل اليومية، مع تجربة هادئة وسهلة لإدارة العادات، واستعراض تفاصيلها، ومتابعة التقدم، وإدارة الإعدادات الشخصية."
   },
   gallery: [
-    "public/images/daily screens 1.png",
-    "public/images/daily screens 2.png",
+    "/images/daily screens 1.png",
+    "/images/daily screens 2.png",
     ],
   },
 
