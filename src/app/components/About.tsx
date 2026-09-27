@@ -34,7 +34,7 @@ export function About() {
             className="max-w-3xl mx-auto p-12 bg-gradient-to-br from-purple-50 to-lavender-50 rounded-3xl border border-purple-100/50 backdrop-blur-sm shadow-xl shadow-purple-100/50"
           >
             <p className="text-lg text-gray-700 leading-relaxed">
-              I am an IT graduate who blends visual artistry with clean code. I design intuitive experiences and build scalable, full-stack mobile apps using Flutter.
+              I am an IT graduate who blends visual artistry with clean code. I design intuitive experiences and build scalable, front-end mobile apps using Flutter.
             </p>
           </motion.div>
 

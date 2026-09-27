@@ -42,10 +42,10 @@ export function Hero() {
             <span className="block text-4xl text-purple-400 font-light italic mt-2">creative</span>
           </h1>
 
-          <h2 className="text-xl text-gray-700">UI/UX Designer & Full-Stack Developer</h2>
+          <h2 className="text-xl text-gray-700">UI/UX Designer & Front-end Developer</h2>
 
           <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
-            I design and build clean, modern, and user-friendly mobile experiences from frontend to backend.
+            I design and build clean, modern, and user-friendly mobile experiences Front-end.
           </p>
 
           <div className="flex gap-4 pt-4">
