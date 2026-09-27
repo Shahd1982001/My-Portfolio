@@ -55,6 +55,29 @@ export const projectsData: Project[] = [
 
 
   //*********************************************************************/
+
+  {
+  id: "daily-spark",
+  title: "Daily Spark",
+  description: "A modern habit-tracking mobile application designed to make daily consistency simple and motivating.",
+  category: "UI/UX Design",
+  tools: ["Figma", "Google Stitch"],
+  prototypeLink: "YOUR_DAILY_SPARK_FIGMA_PROTOTYPE_LINK",
+  designFileLink: "YOUR_DAILY_SPARK_FIGMA_DESIGN_LINK",
+  imageSrc: "public/images/section one.png",
+  imageAlt: "Daily Spark habit tracking app interface preview",
+  gradient: "from-orange-400 to-amber-400",
+  details: {
+    en: "Daily Spark is a habit-tracking mobile application designed to help users build consistent routines without overwhelming them with complex productivity systems. The app focuses on simple daily actions, visible progress, streaks, and a calm user experience, with features for managing habits, tracking progress, viewing habit details, and managing personal settings.",
+    ar: "Daily Spark هو تطبيق محمول لتتبع العادات، صُمم لمساعدة المستخدمين على بناء روتين يومي مستمر بطريقة بسيطة ومحفزة دون تعقيد أو إغراقهم بإحصائيات وأنظمة إنتاجية معقدة. يركز التطبيق على العادات اليومية، ومتابعة التقدم، والسلاسل اليومية، مع تجربة هادئة وسهلة لإدارة العادات، واستعراض تفاصيلها، ومتابعة التقدم، وإدارة الإعدادات الشخصية."
+  },
+  gallery: [
+    "public/images/section one.png",
+    "public/images/daily screens 1.png",
+    ],
+  },
+
+  
   {
     id: "GeoVision-app",
     title: "GeoVision",
@@ -75,6 +98,8 @@ export const projectsData: Project[] = [
       "/images/UI screen 2.png"
     ],
   },
+  
+  
   {
     id: "masgi-app",
     title: "Masgi App",
@@ -95,6 +120,8 @@ export const projectsData: Project[] = [
       "/images/UX screens 2.png"
     ],
   },
+  
+  
   {
     id: "neo-wallet",
     title: "Neo Wallet",
@@ -114,7 +141,9 @@ export const projectsData: Project[] = [
       "/images/neowallet screens.png",
       "/images/neowallet screens 2.png"
     ],
-},
+  },
+  
+
   {
     id: "aura",
     title: "AURA",
@@ -135,6 +164,8 @@ export const projectsData: Project[] = [
       "/images/aura UI screens 2.png"
     ],
   },
+
+
   // {
   //   id: "roboleg-app",
   //   title: "Roboleg App",
@@ -148,7 +179,9 @@ export const projectsData: Project[] = [
 
 
    //*********************************************************************/
-  {
+  
+  
+ {
     id: "brand-logo-set",
     title: "Lipstick Design",
     description: "A beautifully crafted lipstick product design artwork.",
@@ -162,6 +195,8 @@ export const projectsData: Project[] = [
       ar: "تصميم منتج راقي يركز على الألوان والمواد والعرض المتميز للعلامة التجارية.",
     },
   },
+
+
   {
     id: "event-poster",
     title: "Perfume Design",
