@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { Sparkles } from "lucide-react";
+import { ChevronDown, Sparkles } from "lucide-react";
 
 const skills = [
   { name: "Figma", icon: "🎨", color: "from-purple-400 to-pink-400", category: "Design" },
   { name: "Photoshop", icon: "🖼️", color: "from-blue-400 to-cyan-400", category: "Design" },
+  { name: "Canva", icon: "✏️", color: "from-cyan-400 to-blue-500", category: "Design" },
   { name: "VSCode", icon: "💻", color: "from-green-400 to-emerald-400", category: "Development" },
   { name: "Firebase", icon: "🔥", color: "from-orange-400 to-red-400", category: "Development" },
   { name: "Flutter", icon: "🎯", color: "from-cyan-400 to-blue-500", category: "Development" },
@@ -16,10 +17,20 @@ const categories = ["All", "Design", "Development", "Web"];
 
 export function Skills() {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const filteredSkills = selectedCategory === "All" ? skills : skills.filter((skill) => skill.category === selectedCategory);
+  const [showAll, setShowAll] = useState(false);
+  const randomSkill = useMemo(() => {
+    const featuredSkills = skills.filter((skill) => skill.category !== "Design" && skill.category !== "Development");
+    return featuredSkills[Math.floor(Math.random() * featuredSkills.length)] ?? skills[0];
+  }, []);
+  const featuredSkills = [
+    skills.find((skill) => skill.category === "Design"),
+    skills.find((skill) => skill.category === "Development"),
+    randomSkill,
+  ].filter((skill): skill is (typeof skills)[number] => Boolean(skill));
+  const filteredSkills = selectedCategory === "All" ? (showAll ? skills : featuredSkills) : skills.filter((skill) => skill.category === selectedCategory);
 
   return (
-    <section className="py-20 px-8 bg-gradient-to-b from-white to-purple-50/20 relative overflow-hidden">
+    <section id="skills" className="py-20 px-8 bg-gradient-to-b from-white to-purple-50/20 relative overflow-hidden">
       <div className="absolute top-10 left-20 w-64 h-64 bg-purple-200/10 rounded-full blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -55,6 +66,19 @@ export function Skills() {
               {category}
             </button>
           ))}
+          {selectedCategory === "All" ? (
+            <button
+              type="button"
+              onClick={() => setShowAll((current) => !current)}
+              className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-white px-5 py-2 text-sm font-medium text-purple-700 transition hover:bg-purple-50"
+              aria-expanded={showAll}
+            >
+              {showAll ? "Show Featured" : "View All Tools"}
+              <motion.span animate={{ rotate: showAll ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                <ChevronDown className="h-4 w-4" />
+              </motion.span>
+            </button>
+          ) : null}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
