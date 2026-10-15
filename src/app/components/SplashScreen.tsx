@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { Sparkles } from "lucide-react";
+import { siteSparkles } from "./SiteSparkles";
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -7,19 +9,6 @@ interface SplashScreenProps {
 
 export function SplashScreen({ onComplete }: SplashScreenProps) {
   const [isExiting, setIsExiting] = useState(false);
-  const stars = useMemo(
-    () =>
-      Array.from({ length: 28 }, (_, index) => ({
-        id: index,
-        size: 2 + Math.random() * 5,
-        left: 4 + Math.random() * 92,
-        top: 5 + Math.random() * 82,
-        delay: Math.random() * 2.5,
-        duration: 2.5 + Math.random() * 2.5,
-      })),
-    [],
-  );
-
   useEffect(() => {
     const exitTimer = window.setTimeout(() => setIsExiting(true), 4300);
     const completeTimer = window.setTimeout(onComplete, 5000);
@@ -47,29 +36,20 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
     >
       <div className="pointer-events-none absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-purple-300/25 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 bottom-0 h-96 w-96 rounded-full bg-fuchsia-200/25 blur-3xl" />
-      <div className="pointer-events-none absolute inset-0">
-        {stars.map((star) => (
-          <motion.span
-            key={star.id}
-            className="absolute rounded-full bg-white shadow-[0_0_12px_rgba(168,85,247,0.9)]"
-            style={{
-              width: star.size,
-              height: star.size,
-              left: `${star.left}%`,
-              top: `${star.top}%`,
-            }}
-            animate={{
-              opacity: [0.2, 0.95, 0.35, 0.2],
-              scale: [0.75, 1.25, 0.9, 0.75],
-              y: [0, -12, 5, 0],
-            }}
-            transition={{
-              duration: star.duration,
-              delay: star.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
+      <div className="pointer-events-none fixed inset-0 z-10 overflow-hidden">
+        {siteSparkles.map((sparkle, index) => (
+          <motion.div
+            key={`${sparkle.position}-${index}`}
+            animate={sparkle.animated ? { rotate: sparkle.rotation, y: [0, -8, 0] } : undefined}
+            transition={
+              sparkle.animated
+                ? { duration: sparkle.duration, repeat: Infinity, ease: "linear" }
+                : undefined
+            }
+            className={`absolute ${sparkle.position} ${sparkle.color} opacity-60`}
+          >
+            <Sparkles style={{ width: sparkle.size, height: sparkle.size }} />
+          </motion.div>
         ))}
       </div>
 

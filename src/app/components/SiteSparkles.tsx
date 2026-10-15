@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Sparkles } from "lucide-react";
 
-const siteSparkles = [
+export const siteSparkles = [
   { position: "top-[8vh] left-[8vw]", size: 14, color: "text-purple-300", animated: false },
   { position: "top-[14vh] right-[18vw]", size: 34, color: "text-purple-400", animated: true, duration: 9, rotation: [0, 180, 360] },
   { position: "top-[28vh] left-[4vw]", size: 22, color: "text-lavender-300", animated: true, duration: 13, rotation: [360, 180, 0] },
