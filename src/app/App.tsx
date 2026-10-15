@@ -11,17 +11,11 @@ import { Footer } from "./components/Footer";
 import { SiteSparkles } from "./components/SiteSparkles";
 import { SplashScreen } from "./components/SplashScreen";
 
-function shouldShowSplash() {
-  if (typeof window === "undefined") return true;
-  return window.sessionStorage.getItem("portfolio-splash-seen") !== "true";
-}
-
 export default function App() {
   const [showAllProjects, setShowAllProjects] = useState(false);
-  const [showSplash, setShowSplash] = useState(shouldShowSplash);
+  const [showSplash, setShowSplash] = useState(true);
 
   const handleSplashComplete = () => {
-    window.sessionStorage.setItem("portfolio-splash-seen", "true");
     setShowSplash(false);
   };
 

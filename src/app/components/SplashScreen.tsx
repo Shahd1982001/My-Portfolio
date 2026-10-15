@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 
 interface SplashScreenProps {
@@ -7,10 +7,22 @@ interface SplashScreenProps {
 
 export function SplashScreen({ onComplete }: SplashScreenProps) {
   const [isExiting, setIsExiting] = useState(false);
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 28 }, (_, index) => ({
+        id: index,
+        size: 2 + Math.random() * 5,
+        left: 4 + Math.random() * 92,
+        top: 5 + Math.random() * 82,
+        delay: Math.random() * 2.5,
+        duration: 2.5 + Math.random() * 2.5,
+      })),
+    [],
+  );
 
   useEffect(() => {
-    const exitTimer = window.setTimeout(() => setIsExiting(true), 3200);
-    const completeTimer = window.setTimeout(onComplete, 3900);
+    const exitTimer = window.setTimeout(() => setIsExiting(true), 4300);
+    const completeTimer = window.setTimeout(onComplete, 5000);
 
     return () => {
       window.clearTimeout(exitTimer);
@@ -35,6 +47,31 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
     >
       <div className="pointer-events-none absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-purple-300/25 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 bottom-0 h-96 w-96 rounded-full bg-fuchsia-200/25 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0">
+        {stars.map((star) => (
+          <motion.span
+            key={star.id}
+            className="absolute rounded-full bg-white shadow-[0_0_12px_rgba(168,85,247,0.9)]"
+            style={{
+              width: star.size,
+              height: star.size,
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+            }}
+            animate={{
+              opacity: [0.2, 0.95, 0.35, 0.2],
+              scale: [0.75, 1.25, 0.9, 0.75],
+              y: [0, -12, 5, 0],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative flex w-full max-w-5xl flex-col items-center px-6 text-center">
         <div className="pointer-events-none absolute inset-x-0 top-1/2 h-40 -translate-y-1/2">
@@ -68,7 +105,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         <motion.div
           initial={{ x: "-68vw", y: 18, opacity: 0 }}
           animate={{ x: 0, y: 0, opacity: 1 }}
-          transition={{ duration: 1.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 2.15, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10"
         >
           <motion.div
@@ -110,7 +147,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isExiting ? 0 : 1, y: isExiting ? -10 : 0 }}
-          transition={{ delay: 1.55, duration: 0.7 }}
+          transition={{ delay: 2.25, duration: 0.8 }}
           className="relative z-10 mt-12"
         >
           <p className="text-sm font-medium uppercase tracking-[0.35em] text-purple-500">
