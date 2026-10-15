@@ -66,9 +66,9 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         </div>
 
         <motion.div
-          initial={{ x: "-42vw", y: 18, opacity: 0 }}
+          initial={{ x: "-68vw", y: 18, opacity: 0 }}
           animate={{ x: 0, y: 0, opacity: 1 }}
-          transition={{ duration: 1.45, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10"
         >
           <motion.div
