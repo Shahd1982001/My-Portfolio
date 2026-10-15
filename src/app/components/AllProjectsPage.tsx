@@ -23,6 +23,8 @@ export function AllProjectsPage({ onBack }: AllProjectsPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("UI/UX Design");
   const groupedProjects = groupProjectsByCategory(projectsData);
   const categories = Object.keys(groupedProjects);
+  const activeCategory = categories.includes(selectedCategory) ? selectedCategory : categories[0] ?? "";
+  const activeProjects = groupedProjects[activeCategory] ?? [];
 
   return (
     <section className="min-h-screen py-24 px-8 bg-gradient-to-b from-white via-purple-50/30 to-lavender-50/50 relative overflow-hidden">
@@ -46,7 +48,7 @@ export function AllProjectsPage({ onBack }: AllProjectsPageProps) {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-3 rounded-full font-medium text-sm transition ${
-                selectedCategory === category
+                activeCategory === category
                   ? "bg-gradient-to-r from-purple-600 to-lavender-500 text-white shadow-lg"
                   : "bg-white border border-purple-200 text-purple-600 hover:bg-purple-50"
               }`}
@@ -65,15 +67,15 @@ export function AllProjectsPage({ onBack }: AllProjectsPageProps) {
         >
           <div className="inline-flex items-center gap-2 px-5 py-2 bg-purple-50 rounded-full border border-purple-100">
             <Sparkles className="w-4 h-4 text-purple-500" />
-            <span className="text-sm tracking-wide text-purple-600 uppercase">{selectedCategory}</span>
+            <span className="text-sm tracking-wide text-purple-600 uppercase">{activeCategory}</span>
           </div>
 
           <h2 className="text-5xl font-light">
-            {selectedCategory} <span className="bg-gradient-to-r from-purple-600 to-lavender-500 bg-clip-text text-transparent">Projects</span>
+            {activeCategory} <span className="bg-gradient-to-r from-purple-600 to-lavender-500 bg-clip-text text-transparent">Projects</span>
           </h2>
 
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Showcasing all my {selectedCategory.toLowerCase()} work.
+            Showcasing all my {activeCategory.toLowerCase()} work.
           </p>
         </motion.div>
 
@@ -81,12 +83,12 @@ export function AllProjectsPage({ onBack }: AllProjectsPageProps) {
         <div>
           <div className="mb-6 flex items-center justify-between">
             <span className="rounded-full bg-purple-100/80 px-4 py-2 text-sm text-purple-700">
-              {groupedProjects[selectedCategory].length} project{groupedProjects[selectedCategory].length > 1 ? "s" : ""}
+              {activeProjects.length} project{activeProjects.length > 1 ? "s" : ""}
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {groupedProjects[selectedCategory].map((project, index) => (
+            {activeProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>

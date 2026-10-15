@@ -1,28 +1,78 @@
+export const PROJECT_CATEGORIES = [
+  "Website",
+  "Application",
+  "UI/UX Design",
+  "Graphic Design",
+] as const;
+
+export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number];
+
+export interface ProjectDetails {
+  en?: string;
+  ar?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
   description: string;
   gradient: string;
-  category: string;
+  category: ProjectCategory;
   tools?: string[];
   prototypeLink?: string;
   designFileLink?: string;
   imageSrc?: string;
   imageAlt?: string;
-  // Optional links for website / app projects
-  websiteLink?: string; // use for live website URLs
-  // appLink?: string; // use for app store or direct app page URLs
-  // apkLink?: string; // use for APK download links
-  details?: {
-    en?: string;
-    ar?: string;
-  };
+  websiteLink?: string;
+  appLink?: string;
+  apkLink?: string;
+  details?: ProjectDetails;
   gallery?: string[];
 }
 
+const DEFAULT_PROJECT_GRADIENT = "from-purple-400 to-pink-400";
+
+/**
+ * Use this helper when adding a new project below.
+ * It keeps optional fields consistent and lets you focus on the project content.
+ */
+export function createProject(project: Omit<Project, "gradient"> & { gradient?: string }): Project {
+  return {
+    gradient: DEFAULT_PROJECT_GRADIENT,
+    ...project,
+  };
+}
+
+/*
+  Copy this example, paste it at the end of projectsData, then replace the values:
+
+  createProject({
+    id: "unique-project-id",
+    title: "Project name",
+    description: "A short description shown on the project card.",
+    category: "Graphic Design",
+    tools: ["Photoshop", "Illustrator"],
+    imageSrc: "/images/project-cover.png",
+    imageAlt: "Project preview",
+    details: {
+      en: "The full project description in English.",
+      ar: "وصف المشروع الكامل بالعربية.",
+    },
+    gallery: [
+      "/images/project-screen-1.png",
+      "/images/project-screen-2.png",
+    ],
+  }),
+
+  Notes:
+  - Add the image files to public/images first.
+  - Keep id unique and use lowercase letters with hyphens.
+  - Use one of the categories from PROJECT_CATEGORIES.
+  - Add only links that apply to the project.
+*/
+
 export const projectsData: Project[] = [
-  // Example placeholders for future website/app entries:
-  {
+  createProject({
     id: "lmapi-libya.netlify",
     title: "LMAPI",
     description: "A live website project built for showcase.",
@@ -34,7 +84,7 @@ export const projectsData: Project[] = [
       en: "Discover the rich heritage of Libyan traditional medicine. Explore a comprehensive digital database of medicinal and aromatic plants found in Libya, their uses, properties, and cultural significance.",
       ar: "اكتشف التراث الغني للطب التقليدي الليبي. استعرض قاعدة بيانات رقمية شاملة للنباتات الطبية والعطرية الموجودة في ليبيا، مع معلومات عن استخداماتها وخصائصها وأهميتها الثقافية.",
     },
-  },
+  }),
 
 
   //*********************************************************************/
