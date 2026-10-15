@@ -49,12 +49,10 @@ export function Navigation() {
               href={`#${item.id}`}
               whileHover={{ scale: 1.05 }}
               className={`relative rounded-full px-3 py-1.5 text-sm transition-colors cursor-pointer ${
-                activeSection === item.id && item.id !== "projects"
-                  ? "text-purple-700"
-                  : "text-gray-700 hover:text-purple-600"
+                activeSection === item.id ? "text-purple-700" : "text-gray-700 hover:text-purple-600"
               }`}
             >
-              {activeSection === item.id && item.id !== "projects" ? (
+              {activeSection === item.id ? (
                 <motion.span
                   layoutId="active-navigation-pill"
                   className="absolute inset-0 -z-10 rounded-full bg-purple-100"
